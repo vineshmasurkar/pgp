@@ -1,18 +1,35 @@
 # Launch an EC2 instance
 
-In this guide you will be building EC2 instances, target groups Aplication Load Balancer (ALB) using terraform with the following requisites:
+In this guide you will get started with load balancers (LB) and target groups (TG). You'll learn how to connect to the LB with a TG with EC2
+instances launched in different Availability Zones (AZ).
 
-- Instance name: `httpserver1`
+## The goal
+
+The following are the goals of this hands-on:
+1. Understand the process of deploying a resilient application across multiple availability
+zones (AZ)
+2. Create a target group (TG) with EC2 instances.
+3. Create a load balancer (LB)
+4. Associate a TG with the LB
+5. Deleting LB, TG and EC2
+
+    ![alt text](lb.png)
+
+## A. Hands-On: Launch two instances
+- Instance name: `httpserver1` and `httpserver2` for the second instance
 - Instance type: `t2.micro`
 - Image: `ami-06d5e0de6baf595ca`
 - Key pair: `pgpcc-key1`
-- Security Group: `default` and `tio1-sig`
-- Security Group Rules:
-  - Allow HTTP(80) and SSH(22) ingress from any
-  - Allow any traffic egress
-- VPC: `default`
-- HTTP Servers must be configured
-- Configure a new service called `tio.service`
+- VPC: `Default VPC`
+- Subnet: `us-east-1a` and `us-east-1b` for the two instances
+- Security Groups: Create a security group using the following values for both the instances –
+  1. Security Group Name : tio2-sg
+  2. Description : Opens security groups for ssh and http
+  3. A rule for SSH is already added , click on the Add Rule button to add the second rule for this security group using the following values -
+      - Type: `HTTP`
+      - POrt Range: `80`
+      - Source Type: `Anywhere`
+- Storage: No changes
 
 ## AWS Cli
 
@@ -33,15 +50,15 @@ Step 1: Make sure you have terraform and aws cli installed and configured.
 Step 2: Clone the repo
 
 ```bash
-git clone https://github.com/wbox/pgp-cc.git
+git clone https://github.com/vineshmasurkar/pgp.git
 ```
 
 #
 
-Step 3: Change to `pgp-cc/terraform/ec2/tio1` directory
+Step 3: Change to `pgp/terraform/lb/tio1` directory
 
 ```bash
-cd pgp-cc/terraform/ec2/tio1
+cd pgp/terraform/lb/tio1
 ```
 
 #
@@ -637,3 +654,5 @@ Destroy complete! Resources: 5 destroyed.
 ```
 
 </details>
+
+[def]: image.png
