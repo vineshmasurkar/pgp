@@ -14,6 +14,11 @@ variable "instance_set" {
   #default = ["httpserver1"]
 }
 
+variable "vpc_id" {
+  type = string
+  default = "<vpc_id>"
+}
+
 variable "sg_name" {
   type = string
   default = "<sg_name>"
@@ -26,6 +31,7 @@ resource "aws_instance" "vms" {
     instance_type     = var.pgp_instance_type
     user_data         = file("server-script.sh")
     security_groups = [var.sg_name]
+    # subnet_id       = var.vpc_id
     tags = {
       Name = each.value
     }

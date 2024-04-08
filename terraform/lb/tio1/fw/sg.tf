@@ -1,5 +1,6 @@
-data "aws_vpc" "default" {
-  default = true
+variable "vpc_id" {
+  type = string
+  default = "<vpc_id>"
 }
 
 variable "ingressrules" {
@@ -40,7 +41,7 @@ variable "egressrules" {
 resource "aws_security_group" "tio2-sg" {
   name        = "tio2-sg"
   description = "Opens security groups for ssh and http"
-  vpc_id      = data.aws_vpc.default.id
+  vpc_id      = var.vpc_id
   dynamic "ingress" {
       iterator = iter
       for_each = var.ingressrules
@@ -50,8 +51,8 @@ resource "aws_security_group" "tio2-sg" {
           protocol = iter.value.protocol
           cidr_blocks = ["0.0.0.0/0"]
       }
-  }
-    dynamic "ingress" {
+    }
+    dynamic "egress" {
       iterator = iter
       for_each = var.egressrules
       content {
@@ -64,10 +65,6 @@ resource "aws_security_group" "tio2-sg" {
   tags = {
     Name = "tio2-sg"
   }
-}
-
-output "aws_vpc" {
-  value = data.aws_vpc.default
 }
 
 output "tio2-sg" {
