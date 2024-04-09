@@ -31,7 +31,6 @@ resource "aws_instance" "vms" {
     instance_type     = var.pgp_instance_type
     user_data         = file("server-script.sh")
     security_groups = [var.sg_name]
-    # subnet_id       = var.vpc_id
     tags = {
       Name = each.value
     }
@@ -40,7 +39,3 @@ resource "aws_instance" "vms" {
 output "vm_instances" {
   value = aws_instance.vms
 }
-
-# output "vm_instances_ids" {
-#   value = values("${aws_instance.vms}").*.id
-# }
