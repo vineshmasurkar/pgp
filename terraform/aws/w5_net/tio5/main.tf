@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-1"  # US East (N. Virginia)
 }
 
 module "vpc" {
@@ -16,18 +16,18 @@ module "igw" {
   vpc_id = module.vpc.owncloud-vpc-id
 }
 
-module "nat" {
-  source = "./ng"
-  vpc_id = module.vpc.owncloud-vpc-id
-  pubsn-id = module.sn.public-sn-id
-  pvtsn-id = module.sn.private-sn-id
-}
+# module "nat" {
+#   source = "./ng"
+#   vpc_id = module.vpc.owncloud-vpc-id
+#   pubsn-id = module.sn.public-sn-id
+#   pvtsn-id = module.sn.private-sn-id
+# }
 
 module "crt" {
   source = "./rtb"
   vpc_id = module.vpc.owncloud-vpc-id
   igw-id = module.igw.owncloud-igw-id
-  nat-id = module.nat.owncloud-nat-id
+#  nat-id = module.nat.owncloud-nat-id
   pubsn-id = module.sn.public-sn-id
   pvtsn-id = module.sn.private-sn-id
 }

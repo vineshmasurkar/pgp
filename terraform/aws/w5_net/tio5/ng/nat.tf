@@ -24,7 +24,6 @@ resource "aws_eip" "eip-nat" {
 }
 
 resource "aws_nat_gateway" "owncloud-nat" {
-  # subnet_id = var.pvtsn-id
   subnet_id = var.pubsn-id
   allocation_id = aws_eip.eip-nat.id
 
