@@ -48,10 +48,13 @@ resource "aws_instance" "public-server" {
     ami                     = var.pgp_ami
     instance_type           = var.pgp_instance_type
     key_name                = "public-server-kp"  # DONOT add ext .pem
+
+    subnet_id               = var.pub-sn-id    
     # security_groups         = [var.pub-sg-name] # used for default vpc
     vpc_security_group_ids  = [var.pub-sg-id]     # used for custom vpc
-    subnet_id               = var.pub-sn-id
-    user_data = file("public-server-script.sh")
+    associate_public_ip_address = true
+
+    # user_data = file("public-server-script.sh")
 
     tags = {
       Name = "public-server"
@@ -60,26 +63,29 @@ resource "aws_instance" "public-server" {
 }
 
 ## PRIVATE EC2 instances for MySQL DB
-resource "aws_instance" "private-server" {
-    ami                     = var.pgp_ami
-    instance_type           = var.pgp_instance_type
-    key_name                = "private-server-kp"  # DONOT add ext .pem
-    # security_groups         = [var.pub-sg-name] # used for default vpc
-    vpc_security_group_ids  = [var.pvt-sg-id]     # used for custom vpc
-    subnet_id               = var.pvt-sn-id
-    # user_data = file("xxxx.sh")                 # no User data script
+# resource "aws_instance" "private-server" {
+#     ami                     = var.pgp_ami
+#     instance_type           = var.pgp_instance_type
+#     key_name                = "private-server-kp"  # DONOT add ext .pem
 
-    tags = {
-      Name = "private-server"
-      Task = "pcc-aws-proj1"
-    }
-}
+#     subnet_id               = var.pvt-sn-id
+#     # security_groups         = [var.pub-sg-name]  # used for default vpc
+#     vpc_security_group_ids  = [var.pvt-sg-id]      # used for custom vpc
+#     # vpc_security_group_ids  = [var.pvt-sg-id]    # 
+
+#     # user_data = file("xxxx.sh")                 # no User data script
+
+#     tags = {
+#       Name = "private-server"
+#       Task = "pcc-aws-proj1"
+#     }
+# }
 
 ##-------------------------------------------------------
 output "public-server-instance" {
   value = aws_instance.public-server
 }
 
-output "private-server-instance" {
-  value = aws_instance.private-server
-}
+# output "private-server-instance" {
+#   value = aws_instance.private-server
+# }

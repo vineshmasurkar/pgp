@@ -3,40 +3,52 @@ variable "vpc_id" {
   default = "<vpc_id>"
 }
 
+## Security Group Rules for ownCloud app
 variable "pub-io-rules" {
   type = list(object({
     port     = number
     protocol = string
+    cidr_block = string
   }))
   default = [
     {
       port     = 22
       protocol = "tcp"
+      cidr_block = "0.0.0.0/0"
     },
     {
       port     = 80
       protocol = "tcp"
+      cidr_block = "0.0.0.0/0"
     }
   ]
 }
 
+## Security Group Rules for MySQL DB
 variable "pvt-io-rules" {
   type = list(object({
     port     = number
     protocol = string
+    cidr_block = string
   }))
   default = [
     {
       port     = 22
       protocol = "tcp"
+      cidr_block = "10.0.1.0/24"
+    },
+    {
+      port     = 3306   # MYSQL/ Aurora
+      protocol = "tcp"
+      cidr_block = "10.0.1.0/24"
     }
   ]
 }
 
-## PUBLIC SECUIRTY GROUP 
+## PUBLIC SECURITY GROUP for ownCloud app
 resource "aws_security_group" "public-server-sg" {
   name        = "public-server-sg"
-  description = "Opens ports for SSH and HTTP"
+  description = "Opens port(s) for SSH and HTTP"
   vpc_id      = var.vpc_id
   dynamic "ingress" {
       iterator = iter
@@ -45,7 +57,7 @@ resource "aws_security_group" "public-server-sg" {
           from_port = iter.value.port
           to_port = iter.value.port
           protocol = iter.value.protocol
-          cidr_blocks = ["0.0.0.0/0"]
+          cidr_blocks = [iter.value.cidr_block]
       }
     }
     dynamic "egress" {
@@ -55,7 +67,7 @@ resource "aws_security_group" "public-server-sg" {
           from_port = iter.value.port
           to_port = iter.value.port
           protocol = iter.value.protocol
-          cidr_blocks = ["0.0.0.0/0"]
+          cidr_blocks = [iter.value.cidr_block]
       }
   }
 
@@ -65,10 +77,10 @@ resource "aws_security_group" "public-server-sg" {
   }
 }
 
-## PRIVATE SECUIRTY GROUP 
+## PRIVATE SECURITY GROUP for MySQL DB
 resource "aws_security_group" "private-server-sg" {
   name        = "private-server-sg"
-  description = "Opens port for SSH only"
+  description = "Opens port(s) for SSH and MYSQL"
   vpc_id      = var.vpc_id
   dynamic "ingress" {
       iterator = iter
@@ -77,7 +89,7 @@ resource "aws_security_group" "private-server-sg" {
           from_port = iter.value.port
           to_port = iter.value.port
           protocol = iter.value.protocol
-          cidr_blocks = ["0.0.0.0/0"]
+          cidr_blocks = [iter.value.cidr_block]
       }
     }
     dynamic "egress" {
@@ -87,7 +99,7 @@ resource "aws_security_group" "private-server-sg" {
           from_port = iter.value.port
           to_port = iter.value.port
           protocol = iter.value.protocol
-          cidr_blocks = ["0.0.0.0/0"]
+          cidr_blocks = [iter.value.cidr_block]
       }
   }
 

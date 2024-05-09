@@ -15,3 +15,5 @@ sudo wget https://download.owncloud.com/server/stable/owncloud-complete-latest.t
 sudo tar -xjf owncloud-complete-latest.tar.bz2
 sudo chown -R www-data. owncloud
 sudo systemctl restart apache2
+
+echo "PUBLIC SERVER INSTANCE" > /var/www/html/index.html

@@ -44,21 +44,21 @@ resource "aws_route_table_association" "pub-crt-sn" {
 }
 
 ## PRIVATE CUSTOM ROUTE TABLE
-resource "aws_route_table" "private-crt" {
-  vpc_id = var.vpc_id
+# resource "aws_route_table" "private-crt" {
+#   vpc_id = var.vpc_id
 
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = var.nat-id
-  }
+#   route {
+#     cidr_block = "0.0.0.0/0"
+#     gateway_id = var.nat-id
+#   }
 
-  tags = {
-    Name = "private-crt"
-    Task = "pcc-aws-proj1"
-  }
-}
+#   tags = {
+#     Name = "private-crt"
+#     Task = "pcc-aws-proj1"
+#   }
+# }
 
-resource "aws_route_table_association" "pvt-crt-sn" {
-  subnet_id = var.pvtsn-id
-  route_table_id = aws_route_table.private-crt.id
-}
+# resource "aws_route_table_association" "pvt-crt-sn" {
+#   subnet_id = var.pvtsn-id
+#   route_table_id = aws_route_table.private-crt.id
+# }
