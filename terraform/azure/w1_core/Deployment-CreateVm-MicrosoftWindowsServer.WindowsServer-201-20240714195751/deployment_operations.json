@@ -1,0 +1,87 @@
+[
+  {
+    "id": "/subscriptions/8b337f83-ac4b-4562-a3c6-e3ea6d2ca635/resourceGroups/test_rg/providers/Microsoft.Resources/deployments/CreateVm-MicrosoftWindowsServer.WindowsServer-201-20240714195751/operations/9EA2C5179D5156ED",
+    "operationId": "9EA2C5179D5156ED",
+    "properties": {
+      "provisioningOperation": "Create",
+      "provisioningState": "Running",
+      "timestamp": "2024-07-15T00:13:00.8455702Z",
+      "duration": "PT2M3.0920982S",
+      "trackingId": "37671284-1515-4c0e-bc2d-2e8fdc9318e8",
+      "statusCode": "Created",
+      "targetResource": {
+        "id": "/subscriptions/8b337f83-ac4b-4562-a3c6-e3ea6d2ca635/resourceGroups/test_rg/providers/Microsoft.Compute/virtualMachines/test-vm",
+        "resourceType": "Microsoft.Compute/virtualMachines",
+        "resourceName": "test-vm"
+      }
+    }
+  },
+  {
+    "id": "/subscriptions/8b337f83-ac4b-4562-a3c6-e3ea6d2ca635/resourceGroups/test_rg/providers/Microsoft.Resources/deployments/CreateVm-MicrosoftWindowsServer.WindowsServer-201-20240714195751/operations/593655CFF2845A72",
+    "operationId": "593655CFF2845A72",
+    "properties": {
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "timestamp": "2024-07-15T00:10:58.3784923Z",
+      "duration": "PT0.6250203S",
+      "trackingId": "47897058-1185-42b8-838f-bfd73a16124e",
+      "statusCode": "Created",
+      "targetResource": {
+        "id": "/subscriptions/8b337f83-ac4b-4562-a3c6-e3ea6d2ca635/resourceGroups/test_rg/providers/Microsoft.Network/networkInterfaces/test-vm861_z1",
+        "resourceType": "Microsoft.Network/networkInterfaces",
+        "resourceName": "test-vm861_z1"
+      }
+    }
+  },
+  {
+    "id": "/subscriptions/8b337f83-ac4b-4562-a3c6-e3ea6d2ca635/resourceGroups/test_rg/providers/Microsoft.Resources/deployments/CreateVm-MicrosoftWindowsServer.WindowsServer-201-20240714195751/operations/8AAFEA974A4BBBA8",
+    "operationId": "8AAFEA974A4BBBA8",
+    "properties": {
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "timestamp": "2024-07-15T00:10:57.7031249Z",
+      "duration": "PT2.8203371S",
+      "trackingId": "31270201-f17f-4af5-97aa-4003b6dbc2f0",
+      "statusCode": "OK",
+      "targetResource": {
+        "id": "/subscriptions/8b337f83-ac4b-4562-a3c6-e3ea6d2ca635/resourceGroups/test_rg/providers/Microsoft.Network/virtualNetworks/test-vm-vnet",
+        "resourceType": "Microsoft.Network/virtualNetworks",
+        "resourceName": "test-vm-vnet"
+      }
+    }
+  },
+  {
+    "id": "/subscriptions/8b337f83-ac4b-4562-a3c6-e3ea6d2ca635/resourceGroups/test_rg/providers/Microsoft.Resources/deployments/CreateVm-MicrosoftWindowsServer.WindowsServer-201-20240714195751/operations/AD58A87422503F45",
+    "operationId": "AD58A87422503F45",
+    "properties": {
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "timestamp": "2024-07-15T00:10:56.9413381Z",
+      "duration": "PT2.0585503S",
+      "trackingId": "6e68d5a6-878f-4eef-b920-d88bff85a937",
+      "statusCode": "OK",
+      "targetResource": {
+        "id": "/subscriptions/8b337f83-ac4b-4562-a3c6-e3ea6d2ca635/resourceGroups/test_rg/providers/Microsoft.Network/publicIpAddresses/test-vm-ip",
+        "resourceType": "Microsoft.Network/publicIpAddresses",
+        "resourceName": "test-vm-ip"
+      }
+    }
+  },
+  {
+    "id": "/subscriptions/8b337f83-ac4b-4562-a3c6-e3ea6d2ca635/resourceGroups/test_rg/providers/Microsoft.Resources/deployments/CreateVm-MicrosoftWindowsServer.WindowsServer-201-20240714195751/operations/6F425D64F14349E5",
+    "operationId": "6F425D64F14349E5",
+    "properties": {
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "timestamp": "2024-07-15T00:10:56.3947757Z",
+      "duration": "PT1.5119879S",
+      "trackingId": "7cf6ab87-1afa-4cea-85a1-109494953deb",
+      "statusCode": "OK",
+      "targetResource": {
+        "id": "/subscriptions/8b337f83-ac4b-4562-a3c6-e3ea6d2ca635/resourceGroups/test_rg/providers/Microsoft.Network/networkSecurityGroups/test-vm-nsg",
+        "resourceType": "Microsoft.Network/networkSecurityGroups",
+        "resourceName": "test-vm-nsg"
+      }
+    }
+  }
+]
