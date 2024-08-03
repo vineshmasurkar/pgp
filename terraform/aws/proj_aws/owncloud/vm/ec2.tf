@@ -44,23 +44,23 @@ variable "pvt-sg-id" {
 }
 
 ## PUBLIC EC2 instances for ownCloud app
-resource "aws_instance" "public-server" {
-    ami                     = var.pgp_ami
-    instance_type           = var.pgp_instance_type
-    key_name                = "public-server-kp"  # DONOT add ext .pem
+# resource "aws_instance" "public-server" {
+#     ami                     = var.pgp_ami
+#     instance_type           = var.pgp_instance_type
+#     key_name                = "pgp-lab-key"  # DONOT add ext .pem
 
-    subnet_id               = var.pub-sn-id    
-    # security_groups         = [var.pub-sg-name] # used for default vpc
-    vpc_security_group_ids  = [var.pub-sg-id]     # used for custom vpc
-    associate_public_ip_address = true
+#     subnet_id               = var.pub-sn-id    
+#     # security_groups         = [var.pub-sg-name] # used for default vpc
+#     vpc_security_group_ids  = [var.pub-sg-id]     # used for custom vpc
+#     associate_public_ip_address = true
 
-    # user_data = file("public-server-script.sh")
+#     # user_data = file("public-server-script.sh")
 
-    tags = {
-      Name = "public-server"
-      Task = "pcc-aws-proj1"
-    }
-}
+#     tags = {
+#       Name = "public-server"
+#       Task = "pcc-aws-proj1"
+#     }
+# }
 
 ## PRIVATE EC2 instances for MySQL DB
 # resource "aws_instance" "private-server" {
@@ -82,9 +82,9 @@ resource "aws_instance" "public-server" {
 # }
 
 ##-------------------------------------------------------
-output "public-server-instance" {
-  value = aws_instance.public-server
-}
+# output "public-server-instance" {
+#   value = aws_instance.public-server
+# }
 
 # output "private-server-instance" {
 #   value = aws_instance.private-server
